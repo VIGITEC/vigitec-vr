@@ -1,0 +1,12 @@
+{
+  "name": "vigitec",
+  "version": "1.0.0",
+  "description": "Technological observatory in virtual reality",
+  "scripts": {
+    "start": "node ./server/easyrtc-server.js"
+  },
+  "author": "Leandro De Varona Rodríguez",
+  "dependencies": {
+    "networked-aframe": "^0.11.0"
+  }
+}
