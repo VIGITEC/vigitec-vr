@@ -1,0 +1,8 @@
+# OSX
+.vscode
+
+# Build
+dist/
+
+# Dependency directories
+node_modules/
