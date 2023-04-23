@@ -17,7 +17,8 @@ AFRAME.registerComponent('chart', {
       const { x, y, z } = chart.getAttribute('rotation');
       const { xp, yp, zp } = chart.getAttribute('position');
       const origin = this.data.origin_pos;
-      switch (evt.target.id) {
+      const value = evt.target.getAttribute('class');
+      switch (value) {
         case 'left_button':
           chart.setAttribute('animation', {
             property: 'rotation',
