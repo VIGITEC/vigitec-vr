@@ -7,6 +7,11 @@
   },
   "author": "Leandro De Varona Rodríguez",
   "dependencies": {
-    "networked-aframe": "^0.11.0"
+    "dotenv": "^16.3.1",
+    "networked-aframe": "^0.11.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-dev-middleware": "^6.1.1"
   }
 }

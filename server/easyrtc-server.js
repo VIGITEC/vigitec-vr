@@ -1,4 +1,5 @@
 // Load required modules
+require('dotenv').config();
 const http = require('http'); // http server core module
 const path = require('path');
 const express = require('express'); // web framework external module
@@ -36,7 +37,7 @@ if (process.env.NODE_ENV === 'development') {
   );
 }
 
-// Serve the files from the examples folder
+// Serve the files from the client folder
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 
 // Start Express http server
