@@ -1,131 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/environment.css" />
-    <!-- Basics -->
-    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.5.0/socket.io.slim.js"></script>
-    <script src="/easyrtc/easyrtc.js"></script>
-    <script src="https://unpkg.com/networked-aframe@^0.11.0/dist/networked-aframe.min.js"></script>
-    <!-- Complements -->
-    <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
-    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
-    <!-- Custom Components -->
-    <script src="./js/chart-component.js"></script>
-    <script src="./js/movement-component.js"></script>
-    <script src="./js/cursor-listener-component.js"></script>
-    <script>
-      AFRAME.registerComponent('spawn-in-circle', {
-        schema: {
-          radius: { type: 'number', default: 1 },
-        },
 
-        init: function () {
-          var el = this.el;
-          var center = el.getAttribute('position');
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/environment.css" />
+  <!-- Basics -->
+  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.5.0/socket.io.slim.js"></script>
+  <script src="/easyrtc/easyrtc.js"></script>
+  <script src="https://unpkg.com/networked-aframe@^0.11.0/dist/networked-aframe.min.js"></script>
+  <!-- Complements -->
+  <script src="https://unpkg.com/aframe-babia-components/dist/aframe-babia-components.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js "></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+  <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+  <!-- Custom Components -->
+  <script src="./js/chart-component.js"></script>
+  <script src="./js/movement-component.js"></script>
+  <script src="./js/cursor-listener-component.js"></script>
+  <script>
+    AFRAME.registerComponent('spawn-in-circle', {
+      schema: {
+        radius: { type: 'number', default: 1 },
+      },
 
-          var angleRad = this.getRandomAngleInRadians();
-          var circlePoint = this.randomPointOnCircle(
-            this.data.radius,
-            angleRad
-          );
-          var worldPoint = {
-            x: circlePoint.x + center.x,
-            y: center.y,
-            z: circlePoint.y + center.z,
-          };
-          el.setAttribute('position', worldPoint);
+      init: function () {
+        var el = this.el;
+        var center = el.getAttribute('position');
 
-          var angleDeg = (angleRad * 180) / Math.PI;
-          var angleToCenter = -1 * angleDeg + 90;
-          var rotationStr = '0 ' + angleToCenter + ' 0';
-          el.setAttribute('rotation', rotationStr);
-        },
+        var angleRad = this.getRandomAngleInRadians();
+        var circlePoint = this.randomPointOnCircle(
+          this.data.radius,
+          angleRad
+        );
+        var worldPoint = {
+          x: circlePoint.x + center.x,
+          y: center.y,
+          z: circlePoint.y + center.z,
+        };
+        el.setAttribute('position', worldPoint);
 
-        getRandomAngleInRadians: function () {
-          return Math.random() * Math.PI * 2;
-        },
+        var angleDeg = (angleRad * 180) / Math.PI;
+        var angleToCenter = -1 * angleDeg + 90;
+        var rotationStr = '0 ' + angleToCenter + ' 0';
+        el.setAttribute('rotation', rotationStr);
+      },
 
-        randomPointOnCircle: function (radius, angleRad) {
-          x = Math.cos(angleRad) * radius;
-          y = Math.sin(angleRad) * radius;
-          return { x: x, y: y };
-        },
-      });
-    </script>
-    <title>Environment</title>
-  </head>
-  <body>
-    <a-scene
-      networked-scene="
+      getRandomAngleInRadians: function () {
+        return Math.random() * Math.PI * 2;
+      },
+
+      randomPointOnCircle: function (radius, angleRad) {
+        x = Math.cos(angleRad) * radius;
+        y = Math.sin(angleRad) * radius;
+        return { x: x, y: y };
+      },
+    });
+  </script>
+  <title>Environment</title>
+</head>
+
+<body>
+  <a-scene networked-scene="
         app: vigitec;
         room: environment;
+        audio: true;
         debug: true;
         adapter: easyrtc;
-      "
-      vr-mode-ui="enabled: true; cardboardModeEnabled: true;"
-      background="color: #212"
-      environment
-      raycaster="objects: .raycastable;"
-    >
-      <a-asset>
-        <!-- Avatar -->
-        <template id="avatar-template">
-          <a-entity class="avatar">
-            <a-sphere
-              class="head"
-              random-color
-              scale="0.45 0.5 0.4"
-              position="0 1.6 0"
-            ></a-sphere>
-            <a-entity class="face" position="0 1.5 0">
-              <a-sphere
-                class="eye"
-                color="#efefef"
-                position="0.16 0.1 -0.30"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere
-                  class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-              <a-sphere
-                class="eye"
-                color="#efefef"
-                position="-0.16 0.1 -0.30"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere
-                  class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-            </a-entity>
+      " vr-mode-ui="enabled: true; cardboardModeEnabled: true;" background="color: #212" environment
+    raycaster="objects: .raycastable;">
+    <a-asset>
+      <!-- Avatar -->
+      <template id="avatar-template">
+        <a-entity class="avatar" networked="template: audio" networked-audio-source>
+          <a-sphere class="head" random-color scale="0.45 0.5 0.4" position="0 1.6 0"></a-sphere>
+          <a-entity class="face" position="0 1.5 0">
+            <a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.30" scale="0.12 0.12 0.12">
+              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+            </a-sphere>
+            <a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.30" scale="0.12 0.12 0.12">
+              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+            </a-sphere>
           </a-entity>
-        </template>
+        </a-entity>
+      </template>
 
-        <a-asset-item
-          id="data_bar"
-          src='[{"x": 1, "y": 8, "z": 0, "size": 1, "color": "#264653"},
+      <a-asset-item id="data_bar" src='[{"x": 1, "y": 8, "z": 0, "size": 1, "color": "#264653"},
               {"x": 5, "y": 3, "z": 1, "size": 1.5, "color": "#2a9d8f"},
               {"x": 1, "y": 3, "z": 2, "size": 1, "color": "#e9c46a"},
               {"x": 2, "y": 7, "z": 7, "size": 1.5, "color": "#606c38"},
-              {"x": 8, "y": 6, "z": 3, "size": 1, "color": "#e76f51"}]'
-        ></a-asset-item>
-        <a-asset-item
-          id="data_cylinder"
-          src='[
+              {"x": 8, "y": 6, "z": 3, "size": 1, "color": "#e76f51"}]'></a-asset-item>
+      <a-asset-item id="data_cylinder" src='[
           {"x": 1, "y": 8, "z": 0, "size": 1, "color": "#227c9d"},
           {"x": -2, "y": 3, "z": 1, "size": 1.5, "color": "#ffcb77"},
           {"x": -1, "y": 3, "z": 2, "size": 1, "color": "#6f1d1b"},
@@ -150,11 +118,8 @@
           {"x": 8, "y": 6, "z": 4, "size": 1.5, "color": "#ffe6a7"},
           {"x": 9, "y": 6, "z": 3, "size": 1, "color": "#227c9d"},
           {"x": 3, "y": 9, "z": 3, "size": 1.5, "color": "#ffcb77"}
-        ]'
-        ></a-asset-item>
-        <a-asset-item
-          id="data_pie"
-          src='[
+        ]'></a-asset-item>
+      <a-asset-item id="data_pie" src='[
             { "size": 85206, "color": "#f6bd60" },
             { "size": 63993, "color": "#f7ede2" },
             { "size": 59919, "color": "#84a59d" },
@@ -166,11 +131,8 @@
             { "size": 30349, "color": "#a44a3f" },
             { "size": 13482, "color": "#335c67" }
           ]
-          '
-        ></a-asset-item>
-        <a-asset-item
-          id="data_bublle"
-          src='[
+          '></a-asset-item>
+      <a-asset-item id="data_bublle" src='[
             {"x": 1, "y": 8, "z": 0, "size": 1, "color": "#003049"},
             {"x": 2, "y": 7, "z": 7, "size": 1.5, "color": "#006d77"},
             {"x": 1, "y": 6, "z": 3, "size": 1, "color": "#83c5be"},
@@ -191,11 +153,8 @@
             {"x": 9, "y": 6, "z": 3, "size": 1, "color": "#003049"},
             {"x": 3, "y": 9, "z": 3, "size": 1.5, "color": "#edf6f9"}
           ]
-            '
-        ></a-asset-item>
-        <a-asset-item
-          id="data_force"
-          src='{
+            '></a-asset-item>
+      <a-asset-item id="data_force" src='{
             "nodes": [ 
                 { 
                   "id": "1",
@@ -242,70 +201,31 @@
                 },
             ]
           }
-          '
-        ></a-asset-item>
-      </a-asset>
+          '></a-asset-item>
+    </a-asset>
 
-      <!-- Querier Components -->
-      <a-entity
-        id="piedata"
-        babia-queryjson="url: data_examples/europe.json;"
-      ></a-entity>
-      <a-entity
-        id="3dbardata"
-        babia-queryjson="url: data_examples/USA.json;"
-      ></a-entity>
-      <a-entity
-        id="doughnutdata"
-        babia-queryjson="url: data_examples/asia.json;"
-      ></a-entity>
-      <a-entity
-        id="continentsdata"
-        babia-queryjson="url: data_examples/continents.json;"
-      ></a-entity>
+    <!-- Querier Components -->
+    <a-entity id="piedata" babia-queryjson="url: data_examples/europe.json;"></a-entity>
+    <a-entity id="3dbardata" babia-queryjson="url: data_examples/USA.json;"></a-entity>
+    <a-entity id="doughnutdata" babia-queryjson="url: data_examples/asia.json;"></a-entity>
+    <a-entity id="continentsdata" babia-queryjson="url: data_examples/continents.json;"></a-entity>
 
-      <!-- Charts -->
-      <!-- Bar chart -->
-      <a-entity chart="target_charts: 3dbar; origin_pos: 11; dir: true;">
-        <a-entity
-          lounge-plinth="width: 4; depth: 8"
-          lounge-staydown
-          position="8.5 1 5.6"
-          rotation="0 180 0"
-        >
-          <a-entity
-            id="3dbar"
-            babia-barsmap='x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
+    <!-- Charts -->
+    <!-- Bar chart -->
+    <a-entity chart="target_charts: 3dbar; origin_pos: 11; dir: true;">
+      <a-entity lounge-plinth="width: 4; depth: 8" lounge-staydown position="8.5 1 5.6" rotation="0 180 0">
+        <a-entity id="3dbar"
+          babia-barsmap='x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
             heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]'
-            rotation="0 -135 0"
-            scale="0.3 0.3 0.3"
-          ></a-entity>
-        </a-entity>
-        <a-gui-flex-container
-          flex-direction="row"
-          justify-content="center"
-          opacity="0.7"
-          width="1.5"
-          height="3"
-          panel-color="white"
-          position="8.5 3.5 3"
-          rotation="10 -30 0"
-        >
-          <a-gui-button
-            class="left_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="rigth_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <!-- <a-gui-button
+          rotation="0 -135 0" scale="0.3 0.3 0.3"></a-entity>
+      </a-entity>
+      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+        panel-color="white" position="8.5 3.5 3" rotation="10 -30 0">
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <!-- <a-gui-button
             class="pause_button"
             width="0.6"
             height="0.15"
@@ -326,48 +246,23 @@
             margin="0 0 0.05 0"
           >
           </a-gui-button> -->
-        </a-gui-flex-container>
-      </a-entity>
+      </a-gui-flex-container>
+    </a-entity>
 
-      <!-- Ring chart -->
-      <a-entity chart="target_charts: doughnut; origin_pos: 8.5; dir: true">
-        <a-entity
-          position="8.5 2 -1.9"
-          lounge-plinth="width: 4; depth: 4"
-          lounge-staydown
-        >
-          <a-entity
-            id="doughnut"
-            babia-doughnut="legend: true; palette: pearl; from: doughnutdata; key: country; size: cases"
-            rotation="0 0 90"
-            scale="0.8 0.8 0.8"
-          ></a-entity>
-        </a-entity>
-        <a-gui-flex-container
-          flex-direction="row"
-          justify-content="center"
-          opacity="0.7"
-          width="1.5"
-          height="3"
-          panel-color="white"
-          position="8.5 3.5 -4"
-          rotation="10 -30 0"
-        >
-          <a-gui-button
-            class="left_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="rigth_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <!-- <a-gui-button
+    <!-- Ring chart -->
+    <a-entity chart="target_charts: doughnut; origin_pos: 8.5; dir: true">
+      <a-entity position="8.5 2 -1.9" lounge-plinth="width: 4; depth: 4" lounge-staydown>
+        <a-entity id="doughnut"
+          babia-doughnut="legend: true; palette: pearl; from: doughnutdata; key: country; size: cases" rotation="0 0 90"
+          scale="0.8 0.8 0.8"></a-entity>
+      </a-entity>
+      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+        panel-color="white" position="8.5 3.5 -4" rotation="10 -30 0">
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <!-- <a-gui-button
             class="pause_button"
             width="0.6"
             height="0.15"
@@ -388,50 +283,24 @@
             margin="0 0 0.05 0"
           >
           </a-gui-button> -->
-        </a-gui-flex-container>
+      </a-gui-flex-container>
+    </a-entity>
+
+    <!-- Bubble chart -->
+    <a-entity chart="target_charts: bubbles; origin_pos: 12; dir: true">
+      <a-entity position="8.5 1 -9.3" lounge-plinth="width: 4; depth: 4" lounge-staydown>
+        <a-entity id="bubbles"
+          babia-bubbles="legend: true; palette: ubuntu; radiusMax: 1; heightMax: 20; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
+          position="0 0.2 0" rotation="0 -135 0" scale="0.12 0.12 0.12"></a-entity>
       </a-entity>
 
-      <!-- Bubble chart -->
-      <a-entity chart="target_charts: bubbles; origin_pos: 12; dir: true">
-        <a-entity
-          position="8.5 1 -9.3"
-          lounge-plinth="width: 4; depth: 4"
-          lounge-staydown
-        >
-          <a-entity
-            id="bubbles"
-            babia-bubbles="legend: true; palette: ubuntu; radiusMax: 1; heightMax: 20; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
-            position="0 0.2 0"
-            rotation="0 -135 0"
-            scale="0.12 0.12 0.12"
-          ></a-entity>
-        </a-entity>
-
-        <a-gui-flex-container
-          flex-direction="row"
-          justify-content="center"
-          opacity="0.7"
-          width="1.5"
-          height="3"
-          panel-color="white"
-          position="8.5 3.5 -11"
-          rotation="10 -30 0"
-        >
-          <a-gui-button
-            class="left_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="rigth_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <!-- <a-gui-button
+      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+        panel-color="white" position="8.5 3.5 -11" rotation="10 -30 0">
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <!-- <a-gui-button
             class="pause_button"
             width="0.6"
             height="0.15"
@@ -452,50 +321,23 @@
             margin="0 0 0.05 0"
           >
           </a-gui-button> -->
-        </a-gui-flex-container>
-      </a-entity>
+      </a-gui-flex-container>
+    </a-entity>
 
-      <!-- Cylinder chart -->
-      <a-entity chart="target_charts: 3dcylinder; origin_pos: -11; dir: false">
-        <a-entity
-          position="-8.5 1 -9.3"
-          lounge-plinth="width: 3; depth: 9.8"
-          lounge-staydown
-          rotation="0 45 0"
-        >
-          <a-entity
-            id="3dcylinder"
-            babia-cylsmap="legend: true; palette: flat; heightMax: 30; radiusMax: 1; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
-            position="0 0.2 0"
-            rotation="0 -90 0"
-            scale="0.2 0.2 0.2"
-          ></a-entity>
-        </a-entity>
-        <a-gui-flex-container
-          flex-direction="row"
-          justify-content="center"
-          opacity="0.7"
-          width="1.5"
-          height="3"
-          panel-color="white"
-          position="-8.5 3.5 -6"
-          rotation="10 160 0"
-        >
-          <a-gui-button
-            class="left_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="rigth_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <!-- <a-gui-button
+    <!-- Cylinder chart -->
+    <a-entity chart="target_charts: 3dcylinder; origin_pos: -11; dir: false">
+      <a-entity position="-8.5 1 -9.3" lounge-plinth="width: 3; depth: 9.8" lounge-staydown rotation="0 45 0">
+        <a-entity id="3dcylinder"
+          babia-cylsmap="legend: true; palette: flat; heightMax: 30; radiusMax: 1; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
+          position="0 0.2 0" rotation="0 -90 0" scale="0.2 0.2 0.2"></a-entity>
+      </a-entity>
+      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+        panel-color="white" position="-8.5 3.5 -6" rotation="10 160 0">
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <!-- <a-gui-button
             class="pause_button"
             width="0.6"
             height="0.15"
@@ -516,49 +358,22 @@
             margin="0 0 0.05 0"
           >
           </a-gui-button> -->
-        </a-gui-flex-container>
-      </a-entity>
+      </a-gui-flex-container>
+    </a-entity>
 
-      <!-- Pie chart -->
-      <a-entity chart="target_charts: pie; origin_pos: -8.5; dir: false">
-        <a-entity
-          position="-8.5 2 -1.9"
-          lounge-plinth="width: 4; depth: 4"
-          lounge-staydown
-        >
-          <a-entity
-            id="pie"
-            charts
-            babia-pie="legend: true; palette: blues; from: piedata; key: country; size: cases"
-            rotation="90 0 90"
-            scale="1 0.3 1"
-          ></a-entity>
-        </a-entity>
-        <a-gui-flex-container
-          flex-direction="row"
-          justify-content="center"
-          opacity="0.7"
-          width="1.5"
-          height="3"
-          panel-color="white"
-          position="-8.5 3.5 0"
-          rotation="10 160 0"
-        >
-          <a-gui-button
-            class="left_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="rigth_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <!-- <a-gui-button
+    <!-- Pie chart -->
+    <a-entity chart="target_charts: pie; origin_pos: -8.5; dir: false">
+      <a-entity position="-8.5 2 -1.9" lounge-plinth="width: 4; depth: 4" lounge-staydown>
+        <a-entity id="pie" charts babia-pie="legend: true; palette: blues; from: piedata; key: country; size: cases"
+          rotation="90 0 90" scale="1 0.3 1"></a-entity>
+      </a-entity>
+      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+        panel-color="white" position="-8.5 3.5 0" rotation="10 160 0">
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <!-- <a-gui-button
             class="pause_button"
             width="0.6"
             height="0.15"
@@ -579,16 +394,12 @@
             margin="0 0 0.05 0"
           >
           </a-gui-button> -->
-        </a-gui-flex-container>
-      </a-entity>
+      </a-gui-flex-container>
+    </a-entity>
 
-      <!-- Force chart -->
-      <a-entity
-        chart="target_charts: network_chart; origin_pos: -8.5; dir: false"
-      >
-        <a-entity
-          id="network_chart"
-          babia-network='nodes: [{"country": "Italy", "continent": "Europe", "size": 301300},
+    <!-- Force chart -->
+    <a-entity chart="target_charts: network_chart; origin_pos: -8.5; dir: false">
+      <a-entity id="network_chart" babia-network='nodes: [{"country": "Italy", "continent": "Europe", "size": 301300},
           {"country": "China", "size": 9600000},
           {"country": "Spain", "size": 505400},
           {"country": "Germany", "size": 357000},
@@ -612,37 +423,15 @@
           nodeResolution: 20; nodeVal: size; nodeRelSize: 0.02;
           linkWidth: 0.5;  linkAutoColorBy: source; 
           nodeLegend: true; linkLegend: true; linkLabel: id;
-          '
-          position="-8.5 2 5.6"
-          rotation="0 0 90"
-          scale="0.05 0.05 0.05"
-        >
-        </a-entity>
-        <a-gui-flex-container
-          flex-direction="row"
-          justify-content="center"
-          opacity="0.7"
-          width="1.5"
-          height="3"
-          panel-color="white"
-          position="-8.5 3.5 8.6"
-          rotation="10 160 0"
-        >
-          <a-gui-button
-            class="left_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="rigth_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <!-- <a-gui-button
+          ' position="-8.5 2 5.6" rotation="0 0 90" scale="0.05 0.05 0.05">
+      </a-entity>
+      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+        panel-color="white" position="-8.5 3.5 8.6" rotation="10 160 0">
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        </a-gui-button>
+        <!-- <a-gui-button
             class="pause_button"
             width="0.6"
             height="0.15"
@@ -663,62 +452,29 @@
             margin="0 0 0.05 0"
           >
           </a-gui-button> -->
-        </a-gui-flex-container>
-      </a-entity>
+      </a-gui-flex-container>
+    </a-entity>
 
-      <!-- Locomotion by checkpoints -->
-      <a-entity id="Locomotion" position="0 1.6 0">
-        <a-camera
-          id="camera"
-          look-controls
-          wasd-controls
-          position="0 0 0"
-          networked="template:#avatar-template;attachTemplateToLocal:false;"
-          spawn-in-circle="radius:3;"
-        >
-          <!-- Cursor for GUI-->
-          <a-gui-cursor
-            id="cursor"
-            raycaster="objects: [gui-interactable]"
-            fuse="true"
-            fuse-timeout="500"
-            color="#ECEFF1"
-            hover-color="#CFD8DC"
-            active-color="#607D8B"
-            design="ring"
-          >
-          </a-gui-cursor>
-          <!-- Cursor for move -->
-          <a-cursor
-            id="move_cursor"
-            fuse="true"
-            fuse-timeout="2000"
-            visible="false"
-            raycaster="objects: [floor]"
-            move-on-look="movement_object: camera; floor_id: floor;"
-          ></a-cursor>
-          <!-- Cursor para apuntar a las graficas -->
-          <a-cursor
-            visible="false"
-            cursor-listener="disable_cursor: move_cursor;"
-          ></a-cursor>
-        </a-camera>
-      </a-entity>
+    <!-- Locomotion by checkpoints -->
+    <a-entity id="Locomotion" position="0 1.6 0">
+      <a-camera id="camera" look-controls wasd-controls position="0 0 0"
+        networked="template:#avatar-template;attachTemplateToLocal:false;" spawn-in-circle="radius:3;">
+        <!-- Cursor for GUI-->
+        <a-gui-cursor id="cursor" raycaster="objects: [gui-interactable]" fuse="true" fuse-timeout="500" color="#ECEFF1"
+          hover-color="#CFD8DC" active-color="#607D8B" design="ring">
+        </a-gui-cursor>
+        <!-- Cursor for move -->
+        <a-cursor id="move_cursor" fuse="true" fuse-timeout="2000" visible="false" raycaster="objects: [floor]"
+          move-on-look="movement_object: camera; floor_id: floor;"></a-cursor>
+        <!-- Cursor para apuntar a las graficas -->
+        <a-cursor visible="false" cursor-listener="disable_cursor: move_cursor;"></a-cursor>
+      </a-camera>
+    </a-entity>
 
-      <!-- Sky and floor -->
-      <a-cylinder
-        id="floor"
-        floor
-        src="./assets/imgs/floor.jpg"
-        radius="30"
-        height="0.1"
-      ></a-cylinder>
-      <a-sky
-        id="background"
-        src="./assets/imgs/sky.jpg"
-        theta-length="90"
-        radius="30"
-      ></a-sky>
-    </a-scene>
-  </body>
+    <!-- Sky and floor -->
+    <a-cylinder id="floor" floor src="./assets/imgs/floor.jpg" radius="30" height="0.1"></a-cylinder>
+    <a-sky id="background" src="./assets/imgs/sky.jpg" theta-length="90" radius="30"></a-sky>
+  </a-scene>
+</body>
+
 </html>
