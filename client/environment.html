@@ -212,194 +212,224 @@
 
     <!-- Charts -->
     <!-- Bar chart -->
-    <a-entity chart="target_charts: 3dbar; origin_pos: 11; dir: true;">
+    <a-entity chart="target_charts: 3dbar; origin_posX: 8.5; origin_posY: 5.6; origin_posZ: 1; dir: true;">
       <a-entity lounge-plinth="width: 4; depth: 8" lounge-staydown position="8.5 1 5.6" rotation="0 180 0">
         <a-entity id="3dbar"
           babia-barsmap='x_axis: key; z_axis: key2; height: size; legend: true; palette: bussiness; animation: true;
             heightMax:35; data:[{"key":"David","key2":"2019","size":90},{"key":"David","key2":"2018","size":8},{"key":"David","key2":"2017","size":70},{"key":"David","key2":"2016","size":65},{"key":"David","key2":"2015","size":5},{"key":"Pete","key2":"2011","size":80},{"key":"Pete","key2":"2014","size":7},{"key":"Josh","key2":"2016","size":65},{"key":"Josh","key2":"2015","size":55},{"key":"Jesus","key2":"2016","size":90},{"key":"Jesus","key2":"2011","size":80},{"key":"Jesus","key2":"2014","size":75},{"key":"Jesus","key2":"2016","size":60},{"key":"Jesus","key2":"2015","size":5},{"key":"Jesus","key2":"2016","size":95},{"key":"Steve","key2":"2016","size":90},{"key":"Steve","key2":"2017","size":8},{"key":"Steve","key2":"2014","size":7},{"key":"Steve","key2":"2013","size":60},{"key":"Moreno","key2":"2015","size":45},{"key":"Jesus","key2":"2019","size":100},{"key":"Pete","key2":"2019","size":10}]'
           rotation="0 -135 0" scale="0.3 0.3 0.3"></a-entity>
       </a-entity>
-      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+      <a-gui-flex-container flex-direction="column" justify-content="center" opacity="0.7" width="1.5" height="3"
         panel-color="white" position="8.5 3.5 3" rotation="10 -30 0">
-        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
         </a-gui-button>
-        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+
+        <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#f1faee">
         </a-gui-button>
-        <!-- <a-gui-button
-            class="pause_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="top_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="bottom_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button> -->
+        <a-gui-button class="rotate_rigth_button" width="0.6" height="0.15" margin="0 0 0.18 0"
+          background-color="#f1faee">
+        </a-gui-button>
+
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="top_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="bottom_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="forward_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="after_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#a8dadc">
+        </a-gui-button>
+
+
+        <a-gui-button class="increase_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
+        <a-gui-button class="decrease_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
       </a-gui-flex-container>
     </a-entity>
+    <a-cylinder checkpoint radius="0.5" height="0.01" position="6 0.1 5.6" color="#39BB82"></a-cylinder>
 
     <!-- Ring chart -->
-    <a-entity chart="target_charts: doughnut; origin_pos: 8.5; dir: true">
+    <a-entity chart="target_charts: doughnut; origin_posX: 8.5; origin_posY: -1.9; origin_posZ: 2; dir: true">
       <a-entity position="8.5 2 -1.9" lounge-plinth="width: 4; depth: 4" lounge-staydown>
         <a-entity id="doughnut"
           babia-doughnut="legend: true; palette: pearl; from: doughnutdata; key: country; size: cases" rotation="0 0 90"
           scale="0.8 0.8 0.8"></a-entity>
       </a-entity>
-      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+      <a-gui-flex-container flex-direction="column" justify-content="center" opacity="0.7" width="1.5" height="3"
         panel-color="white" position="8.5 3.5 -4" rotation="10 -30 0">
-        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
         </a-gui-button>
-        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+
+        <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#f1faee">
         </a-gui-button>
-        <!-- <a-gui-button
-            class="pause_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="top_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="bottom_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button> -->
+        <a-gui-button class="rotate_rigth_button" width="0.6" height="0.15" margin="0 0 0.18 0"
+          background-color="#f1faee">
+        </a-gui-button>
+
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="top_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="bottom_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="forward_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="after_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#a8dadc">
+        </a-gui-button>
+
+
+        <a-gui-button class="increase_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
+        <a-gui-button class="decrease_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
       </a-gui-flex-container>
     </a-entity>
+    <a-cylinder checkpoint radius="0.5" height="0.01" position="6 0.1 -1.9" color="#39BB82"></a-cylinder>
 
     <!-- Bubble chart -->
-    <a-entity chart="target_charts: bubbles; origin_pos: 12; dir: true">
+    <a-entity chart="target_charts: bubbles; origin_posX: 8.5; origin_posY: -9.3; origin_posZ: 1; dir: true">
       <a-entity position="8.5 1 -9.3" lounge-plinth="width: 4; depth: 4" lounge-staydown>
         <a-entity id="bubbles"
           babia-bubbles="legend: true; palette: ubuntu; radiusMax: 1; heightMax: 20; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
           position="0 0.2 0" rotation="0 -135 0" scale="0.12 0.12 0.12"></a-entity>
       </a-entity>
 
-      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+      <a-gui-flex-container flex-direction="column" justify-content="center" opacity="0.7" width="1.5" height="3"
         panel-color="white" position="8.5 3.5 -11" rotation="10 -30 0">
-        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
         </a-gui-button>
-        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+
+        <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#f1faee">
         </a-gui-button>
-        <!-- <a-gui-button
-            class="pause_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="top_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="bottom_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button> -->
+        <a-gui-button class="rotate_rigth_button" width="0.6" height="0.15" margin="0 0 0.18 0"
+          background-color="#f1faee">
+        </a-gui-button>
+
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="top_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="bottom_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="forward_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="after_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#a8dadc">
+        </a-gui-button>
+
+
+        <a-gui-button class="increase_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
+        <a-gui-button class="decrease_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
       </a-gui-flex-container>
     </a-entity>
+    <a-cylinder checkpoint radius="0.5" height="0.01" position="6 0.1 -9.3" color="#39BB82"></a-cylinder>
 
     <!-- Cylinder chart -->
-    <a-entity chart="target_charts: 3dcylinder; origin_pos: -11; dir: false">
+    <a-entity chart="target_charts: 3dcylinder; origin_posX: -8.5; origin_posY: -9.3; origin_posZ: 1; dir: false">
       <a-entity position="-8.5 1 -9.3" lounge-plinth="width: 3; depth: 9.8" lounge-staydown rotation="0 45 0">
         <a-entity id="3dcylinder"
           babia-cylsmap="legend: true; palette: flat; heightMax: 30; radiusMax: 1; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
           position="0 0.2 0" rotation="0 -90 0" scale="0.2 0.2 0.2"></a-entity>
       </a-entity>
-      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+      <a-gui-flex-container flex-direction="column" justify-content="center" opacity="0.7" width="1.5" height="3"
         panel-color="white" position="-8.5 3.5 -6" rotation="10 160 0">
-        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
         </a-gui-button>
-        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+
+        <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#f1faee">
         </a-gui-button>
-        <!-- <a-gui-button
-            class="pause_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="top_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="bottom_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button> -->
+        <a-gui-button class="rotate_rigth_button" width="0.6" height="0.15" margin="0 0 0.18 0"
+          background-color="#f1faee">
+        </a-gui-button>
+
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="top_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="bottom_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="forward_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="after_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#a8dadc">
+        </a-gui-button>
+
+
+        <a-gui-button class="increase_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
+        <a-gui-button class="decrease_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
       </a-gui-flex-container>
     </a-entity>
+    <a-cylinder checkpoint radius="0.5" height="0.01" position="-6 0.1 -9.3" color="#39BB82"></a-cylinder>
 
     <!-- Pie chart -->
-    <a-entity chart="target_charts: pie; origin_pos: -8.5; dir: false">
+    <a-entity chart="target_charts: pie; origin_posX: -8.5; origin_posY: -1.9; origin_posZ: 2; dir: false">
       <a-entity position="-8.5 2 -1.9" lounge-plinth="width: 4; depth: 4" lounge-staydown>
         <a-entity id="pie" charts babia-pie="legend: true; palette: blues; from: piedata; key: country; size: cases"
           rotation="90 0 90" scale="1 0.3 1"></a-entity>
       </a-entity>
-      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+      <a-gui-flex-container flex-direction="column" justify-content="center" opacity="0.7" width="1.5" height="3"
         panel-color="white" position="-8.5 3.5 0" rotation="10 160 0">
-        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
         </a-gui-button>
-        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+
+        <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#f1faee">
         </a-gui-button>
-        <!-- <a-gui-button
-            class="pause_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="top_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="bottom_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button> -->
+        <a-gui-button class="rotate_rigth_button" width="0.6" height="0.15" margin="0 0 0.18 0"
+          background-color="#f1faee">
+        </a-gui-button>
+
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="top_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="bottom_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="forward_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="after_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#a8dadc">
+        </a-gui-button>
+
+
+        <a-gui-button class="increase_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
+        <a-gui-button class="decrease_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
       </a-gui-flex-container>
     </a-entity>
+    <a-cylinder checkpoint radius="0.5" height="0.01" position="-6 0.1 -1.9" color="#39BB82"></a-cylinder>
 
     <!-- Force chart -->
-    <a-entity chart="target_charts: network_chart; origin_pos: -8.5; dir: false">
-      <a-entity id="network_chart" babia-network='nodes: [{"country": "Italy", "continent": "Europe", "size": 301300},
+    <a-entity chart="target_charts: network_chart; origin_posX: -8.5; origin_posY: 5.6; origin_posZ: 2; dir: false">
+      <a-entity id="network_chart" position="-8.5 2 5.6" rotation="0 0 90" scale="0.05 0.05 0.05" babia-network='nodes: [{"country": "Italy", "continent": "Europe", "size": 301300},
           {"country": "China", "size": 9600000},
           {"country": "Spain", "size": 505400},
           {"country": "Germany", "size": 357000},
@@ -423,37 +453,43 @@
           nodeResolution: 20; nodeVal: size; nodeRelSize: 0.02;
           linkWidth: 0.5;  linkAutoColorBy: source; 
           nodeLegend: true; linkLegend: true; linkLabel: id;
-          ' position="-8.5 2 5.6" rotation="0 0 90" scale="0.05 0.05 0.05">
+          '>
       </a-entity>
-      <a-gui-flex-container flex-direction="row" justify-content="center" opacity="0.7" width="1.5" height="3"
+      <a-gui-flex-container flex-direction="column" justify-content="center" opacity="0.7" width="1.5" height="3"
         panel-color="white" position="-8.5 3.5 8.6" rotation="10 160 0">
-        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+        <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
         </a-gui-button>
-        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0">
+
+        <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#f1faee">
         </a-gui-button>
-        <!-- <a-gui-button
-            class="pause_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="top_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button>
-          <a-gui-button
-            class="bottom_button"
-            width="0.6"
-            height="0.15"
-            margin="0 0 0.05 0"
-          >
-          </a-gui-button> -->
+        <a-gui-button class="rotate_rigth_button" width="0.6" height="0.15" margin="0 0 0.18 0"
+          background-color="#f1faee">
+        </a-gui-button>
+
+        <a-gui-button class="left_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="rigth_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="top_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="bottom_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="forward_button" width="0.6" height="0.15" margin="0 0 0.05 0" background-color="#a8dadc">
+        </a-gui-button>
+        <a-gui-button class="after_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#a8dadc">
+        </a-gui-button>
+
+
+        <a-gui-button class="increase_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
+        <a-gui-button class="decrease_scale__button" width="0.6" height="0.15" margin="0 0 0.05 0"
+          background-color="#457b9d">
+        </a-gui-button>
       </a-gui-flex-container>
     </a-entity>
+    <a-cylinder checkpoint radius="0.5" height="0.01" position="-6 0.1 5.6" color="#39BB82"></a-cylinder>
 
     <!-- Locomotion by checkpoints -->
     <a-entity id="Locomotion" position="0 1.6 0">
