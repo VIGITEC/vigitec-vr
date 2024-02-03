@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="build.js"></script>
+</head>
+
+<body>
+  <a-scene avatar-recorder="localStorage: false">
+    <a-asset></a-asset>
+    <!-- Locomotion by checkpoints -->
+    <a-entity id="Locomotion" position="0 1.6 0">
+      <a-camera id="camera" look-controls wasd-controls position="0 0 0"
+        networked="template:#avatar-template;attachTemplateToLocal:false;" spawn-in-circle="radius:3;">
+        <!-- Cursor for GUI-->
+        <a-gui-cursor id="cursor" raycaster="objects: [gui-interactable]" fuse="true" fuse-timeout="500" color="#ECEFF1"
+          hover-color="#CFD8DC" active-color="#607D8B" design="ring">
+        </a-gui-cursor>
+        <!-- Cursor for move -->
+        <a-cursor id="move_cursor" fuse="true" fuse-timeout="2000" visible="true" raycaster="objects: [floor]"
+          move-on-look="movement_object: camera; floor_id: floor;"></a-cursor>
+        <!-- Cursor para apuntar a las graficas -->
+        <a-cursor visible="false" cursor-listener="disable_cursor: move_cursor;"></a-cursor>
+      </a-camera>
+    </a-entity>
+
+    <!-- Sky and floor -->
+    <a-cylinder id="floor" floor src="./assets/imgs/floor.jpg" radius="30" height="0.1"></a-cylinder>
+    <a-sky id="background" src="./assets/imgs/sky.jpg" theta-length="90" radius="30"></a-sky>
+  </a-scene>
+</body>
+
+</html>
