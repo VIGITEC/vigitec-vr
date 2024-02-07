@@ -8,5 +8,18 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js'],
-  },
+  }, module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
 };
