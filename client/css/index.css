@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 /* global styles */
 :root {
   --base-green: #00ab61;
@@ -80,21 +81,26 @@ body {
   .home {
     justify-content: end;
   }
+
   .home_container {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
     width: 100%;
   }
+
   .home_container-button {
     flex-direction: column;
   }
+
   .home_container-button a {
     margin-top: 50px;
   }
+
   .home_container-vr_img {
     width: auto;
   }
+
   .home_container-button_stiker {
     display: block;
   }

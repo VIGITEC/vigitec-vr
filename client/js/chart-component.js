@@ -9,10 +9,6 @@ AFRAME.registerComponent('chart', {
     dir: { type: 'boolean', default: true },
   },
 
-  init: function () {
-    // Do something when component first attached.
-  },
-
   events: {
     click: function (evt) {
       const chart = document.getElementById(this.data.target_charts);
