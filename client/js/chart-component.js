@@ -3,9 +3,6 @@ AFRAME.registerComponent('chart', {
   multiple: true,
   schema: {
     target_charts: { type: 'string', default: '#' },
-    origin_posX: { type: 'number', default: 0 },
-    origin_posY: { type: 'number', default: 0 },
-    origin_posZ: { type: 'number', default: 0 },
     dir: { type: 'boolean', default: true },
   },
 
@@ -13,10 +10,8 @@ AFRAME.registerComponent('chart', {
     click: function (evt) {
       const chart = document.getElementById(this.data.target_charts);
       const { x, y, z } = chart.getAttribute('rotation');
-      const { xp, yp, zp } = chart.getAttribute('position');
-      const originX = this.data.origin_posX;
-      const originY = this.data.origin_posY;
-      const originZ = this.data.origin_posZ;
+      const { x: xp, y: yp, z: zp } = chart.getAttribute('position');
+
       const value = evt.target.getAttribute('class');
       switch (value) {
         case 'rotate_left__button':
@@ -40,12 +35,13 @@ AFRAME.registerComponent('chart', {
 
 
         case 'left_button':
-          let value = originY;
+          let value = zp;
           if (this.data.dir) {
-            value = value - 3;
+            value = value - 2;
           } else {
-            value = value + 3;
+            value = value + 2;
           }
+
           chart.setAttribute('animation__2', {
             property: 'position',
             to: { x: xp, y: yp, z: value },
@@ -56,12 +52,13 @@ AFRAME.registerComponent('chart', {
           chart.play();
           break;
         case 'rigth_button':
-          let value2 = originY;
+          let value2 = zp;
           if (this.data.dir) {
-            value2 = value2 + 3;
+            value2 = value2 + 2;
           } else {
-            value2 = value2 - 3;
+            value2 = value2 - 2;
           }
+
           chart.setAttribute('animation__2', {
             property: 'position',
             to: { x: xp, y: yp, z: value2 },
@@ -72,11 +69,11 @@ AFRAME.registerComponent('chart', {
           chart.play();
           break;
         case 'top_button':
-          let value3 = originZ;
+          let value3 = yp;
           if (this.data.dir) {
-            value3 = value3 - 3;
+            value3 = value3 - 2;
           } else {
-            value3 = value3 + 3;
+            value3 = value3 + 2;
           }
           chart.setAttribute('animation__2', {
             property: 'position',
@@ -88,11 +85,11 @@ AFRAME.registerComponent('chart', {
           chart.play();
           break;
         case 'bottom_button':
-          let value4 = originZ;
+          let value4 = yp;
           if (this.data.dir) {
-            value4 = value4 + 3;
+            value4 = value4 + 2;
           } else {
-            value4 = value4 - 3;
+            value4 = value4 - 2;
           }
           chart.setAttribute('animation__2', {
             property: 'position',
@@ -104,11 +101,11 @@ AFRAME.registerComponent('chart', {
           chart.play();
           break;
         case 'forward_button':
-          let value5 = originX;
+          let value5 = xp;
           if (this.data.dir) {
-            value5 = value5 - 3;
+            value5 = value5 - 2;
           } else {
-            value5 = value5 + 3;
+            value5 = value5 + 2;
           }
           chart.setAttribute('animation__2', {
             property: 'position',
@@ -120,11 +117,11 @@ AFRAME.registerComponent('chart', {
           chart.play();
           break;
         case 'after_button':
-          let value6 = originX;
+          let value6 = xp;
           if (this.data.dir) {
-            value6 = value6 + 3;
+            value6 = value6 + 2;
           } else {
-            value6 = value6 - 3;
+            value6 = value6 - 2;
           }
           chart.setAttribute('animation__2', {
             property: 'position',
@@ -140,7 +137,7 @@ AFRAME.registerComponent('chart', {
         case 'increase_scale__button':
           chart.setAttribute('animation__3', {
             property: 'scale',
-            to: { x: 0.1, y: 0.1, z: 0.1 },
+            to: { x: 1, y: 1, z: 1 },
             dur: 10000,
             easing: 'linear',
           });
@@ -149,7 +146,7 @@ AFRAME.registerComponent('chart', {
         case 'decrease_scale__button':
           chart.setAttribute('animation__3', {
             property: 'scale',
-            to: { x: 0.01, y: 0.01, z: 0.01 },
+            to: { x: 0.1, y: 0.1, z: 0.1 },
             dur: 10000,
             easing: 'linear',
           });
