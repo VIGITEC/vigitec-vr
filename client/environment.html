@@ -171,6 +171,7 @@
     <a-entity id="3dbardata" babia-queryjson="url: data_examples/USA.json;"></a-entity>
     <a-entity id="doughnutdata" babia-queryjson="url: data_examples/asia.json;"></a-entity>
     <a-entity id="continentsdata" babia-queryjson="url: data_examples/continents.json;"></a-entity>
+    <a-entity id="mpi_subnational" babia-queryjson="url: data_examples/MPI_national.json;"></a-entity>
 
     <!-- Charts -->
     <!-- Bar chart -->
@@ -184,7 +185,8 @@
       <a-gui-flex-container flex-direction="row" justify-content="flexEnd" opacity="0.7" width="3" height="2"
         panel-color="white" position="8.5 3 3" rotation="10 -30 0" component-padding="0.1" item-padding="1">
         <a-gui-flex-container flex-direction="column" opacity="0.7" panel-color="white" align-items="flexEnd">
-          <a-gui-button class="pause_button" width="0.6" height="0.15" margin="0 0 0.18 0" background-color="#e63946">
+          <a-gui-button class="pause_button" width="0.6" height="0.6" margin="0 0 0.18 0" value="Sample"
+            font-color="white">
           </a-gui-button>
 
           <a-gui-button class="rotate_left__button" width="0.6" height="0.15" margin="0 0 0.05 0"
@@ -273,7 +275,7 @@
     <a-entity chart="target_charts: bubbles; dir: true">
       <a-entity id="bubbles" position="8.5 1 -9.3" lounge-plinth="width: 4; depth: 4" lounge-staydown>
         <a-entity
-          babia-bubbles="legend: true; palette: ubuntu; radiusMax: 1; heightMax: 20; from: continentsdata; x_axis: country; z_axis: continentExp; height: deaths; radius: cases"
+          babia-bubbles="legend: true; palette: ubuntu; radiusMax: 1; heightMax: 20; from: mpi_subnational; x_axis: Country; z_axis: World region; height: MPI National; radius: Headcount Ratio Regional"
           position="0 0.2 0" rotation="0 -135 0" scale="0.12 0.12 0.12"></a-entity>
       </a-entity>
       <a-gui-flex-container flex-direction="row" justify-content="flexEnd" opacity="0.7" width="3" height="2"
@@ -484,8 +486,8 @@
 
     <!-- Locomotion by checkpoints -->
     <a-entity id="Locomotion" position="0 1.6 0">
-      <a-camera id="camera" look-controls wasd-controls position="0 0 0"
-        networked="template:#avatar-template;attachTemplateToLocal:false;" spawn-in-circle="radius:3;">
+      <a-camera id="camera" position="0 0 0" networked="template:#avatar-template;attachTemplateToLocal:false;"
+        spawn-in-circle="radius:3;">
         <!-- Cursor for GUI-->
         <a-gui-cursor id="cursor" raycaster="objects: [gui-interactable]" fuse="true" fuse-timeout="500" color="#ECEFF1"
           hover-color="#CFD8DC" active-color="#607D8B" design="ring">

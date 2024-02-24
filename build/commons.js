@@ -52,9 +52,9 @@ eval("/* global  assert, setup, suite, test */\nvar entityFactory = (__webpack_r
 /*!*****************************************************!*\
   !*** ./tests/components/movement-component.test.js ***!
   \*****************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("\n\n//# sourceURL=webpack://vigitec/./tests/components/movement-component.test.js?");
+eval("/* global  assert, setup, suite, test */\nvar entityFactory = (__webpack_require__(/*! ../helpers */ \"./tests/helpers.js\").entityFactory);\nsuite('move-on-look', function () {\n  setup(function (done) {\n    var el = this.el = entityFactory();\n    el.setAttribute('move-on-look', 'movement_object: camera_example; floor_id: floor_example;');\n    if (el.hasLoaded) {\n      done();\n    }\n    el.addEventListener('loaded', function () {\n      done();\n    });\n  });\n  test('default values', function () {\n    var el = this.el;\n    assert.equal(el.getAttribute('move-on-look'), 'movement_object: camera_example; floor_id: floor_example;');\n  });\n  suite('schema', function () {\n    test('can get defined attributes', function () {\n      var el = this.el;\n      el.setAttribute('move-on-look', 'movement_object: camera_example2; floor_id: floor_example2;');\n      assert.shallowDeepEqual(el.getAttribute('move-on-look'), 'movement_object: camera_example2; floor_id: floor_example2;');\n    });\n  });\n});\n\n//# sourceURL=webpack://vigitec/./tests/components/movement-component.test.js?");
 
 /***/ }),
 
@@ -62,9 +62,9 @@ eval("\n\n//# sourceURL=webpack://vigitec/./tests/components/movement-component.
 /*!**************************************************!*\
   !*** ./tests/components/spawn-in-circle.test.js ***!
   \**************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("\n\n//# sourceURL=webpack://vigitec/./tests/components/spawn-in-circle.test.js?");
+eval("/* global  assert, setup, suite, test */\nvar entityFactory = (__webpack_require__(/*! ../helpers */ \"./tests/helpers.js\").entityFactory);\nsuite('spawn-in-circle', function () {\n  setup(function (done) {\n    var el = this.el = entityFactory();\n    el.setAttribute('spawn-in-circle', 'radius:3;');\n    if (el.hasLoaded) {\n      done();\n    }\n    el.addEventListener('loaded', function () {\n      done();\n    });\n  });\n  test('default values', function () {\n    var el = this.el;\n    assert.equal(el.getAttribute('spawn-in-circle'), 'radius:3;');\n  });\n  suite('schema', function () {\n    test('can get defined attributes', function () {\n      var el = this.el;\n      el.setAttribute('spawn-in-circle', 'radius:4;');\n      assert.shallowDeepEqual(el.getAttribute('spawn-in-circle'), 'radius:4;');\n    });\n  });\n});\n\n//# sourceURL=webpack://vigitec/./tests/components/spawn-in-circle.test.js?");
 
 /***/ }),
 
