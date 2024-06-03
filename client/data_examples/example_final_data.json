@@ -1,0 +1,29 @@
+{
+  "keys": {
+    "x_axis": "Country",
+    "y_axis": "MPI National",
+    "z_axis": "World region"
+  },
+  "data": [
+    {
+      "ISO country code": "JOR",
+      "Country": "Jordan",
+      "Sub-national region": "Central",
+      "World region": "Arab States",
+      "MPI National": "0.045",
+      "MPI Regional": "0.05",
+      "Headcount Ratio Regional": 14,
+      "Intensity of deprivation Regional": 37.3
+    },
+    {
+      "ISO country code": "AFG",
+      "Country": "Afghanistan",
+      "Sub-national region": "Badghis",
+      "World region": "South Asia",
+      "MPI National": "0.295",
+      "MPI Regional": "0.466",
+      "Headcount Ratio Regional": 79.3,
+      "Intensity of deprivation Regional": 58.8
+    }
+  ]
+}
